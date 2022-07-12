@@ -1,0 +1,97 @@
+% vim: ft=tex
+\PassOptionsToPackage{dvipsnames,usenames}{color}
+\documentclass[11pt]{article}%
+
+\usepackage{parskip}
+
+\usepackage[unicode]{hyperref}
+\usepackage{amsmath,amssymb}%
+% supertabular package required if using the default grammar tabular
+\usepackage{supertabular}
+\usepackage[margin=1in]{geometry}
+
+
+% the un-wrapped (-tex_wrap false) generated LaTeX file for ott
+\include{_gen/ott_included}
+% the package that allows customized layout described in this document
+\usepackage{ottlayout}
+% the automatically generated file (with our Makefile) to link the generated
+% LaTeX with the ottlayout package
+\include{_gen/ott_override}
+\include{_gen/ott_drulenames}
+
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
+
+\newtheorem{theorem}{Theorem}
+
+\usepackage{pf2}
+\beforePfSpace{15pt, 10pt, 10pt, 10pt, 5pt, 2pt}
+\afterPfSpace{15pt, 10pt, 10pt, 10pt, 5pt, 2pt}
+\interStepSpace{15pt, 10pt, 10pt, 10pt, 5pt, 2pt}
+\pflongindent%
+
+\usepackage{verbatim}
+
+\makeatletter
+\renewcommand\tableofcontents{\@starttoc{toc}}
+\makeatother
+
+\usepackage{abstract}
+\renewcommand{\abstractname}{}    % clear the title
+\renewcommand{\absnamepos}{empty} % originally center
+
+\setcounter{tocdepth}{2}
+
+\newcommand{\lemmaref}[1]{lemma~\ref{#1} (\nameref{#1})}
+
+\begin{document}
+\ottstyledefaults{premiselayout=justify}%
+
+\begin{center}
+{\LARGE Soundness Proof}
+\end{center}
+
+\vspace{1em}
+
+\begin{abstract}
+This document contains a proof of soundness of the explicit system, the rules are defined elsewhere.
+\end{abstract}
+
+{\let\clearpage\relax \tableofcontents}
+
+\section{Commentary}
+Some commentary.
+
+\section{Typing Judgements}\label{sec:type_judge}
+
+Some explanation.
+
+\ottgrammartabular{
+%\ottexplXXseqXXexpr\ottinterrule%
+%\ottexplXXtop\ottafterlastrule%
+}
+
+\section{Operational Semantics Judgements}\label{sec:opsem_judge}
+
+\grammartabularSTY{
+%\ottpureXXopsemXXdefns\ottinterrule%
+%\ottopsemXXdefns\ottafterlastrule%
+}
+
+\section{Proof Judgements}\label{sec:proof_judge}
+
+\grammartabularSTY{
+%\ottmiscXXextra\ottinterrule%
+%\ottproofXXdefns\ottafterlastrule%
+}
+
+\raggedright%
+
+\end{document}
+
+% Typing
+
+% Operational
+
+% Misc

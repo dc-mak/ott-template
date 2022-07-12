@@ -1,0 +1,8 @@
+grammar
+
+  misc_extra :: 'misc_extra_' ::= {{ com extra judgements for proof-related definitions }}
+    | forall x . something                      ::  :: forall_x_st     {{ com meta-logical quantification over something }}
+
+defns
+  proof_defns :: '' ::=
+

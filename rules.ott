@@ -1,0 +1,31 @@
+grammar
+
+  C {{ tex \mathcal{C} }} :: Comp_Ctx_ ::= {{ com computational variable context }}
+    | ident : base_type  ::   :: cons   {{ com add to context       }}
+    | </ Ci // , // i /> ::   :: concat {{ com concatenate contexts }}
+    | cdot               :: M :: empty  {{ com empty context        }}
+
+grammar
+
+  % OUT_HACK|C,\mathcal{C}
+  out_C {{ tex \outpol{ \mathcal{C} } }}   :: 'Out_hack_' ::=  {{ com Ott-hack, ignore }}
+    | C :: :: C {{ tex \outpol{ [[C]] } }}
+
+grammar
+
+  ty_extra :: 'ty_extra_' ::= {{ com extra judgements for explicit and inference typing systems }}
+    | ident : out_base_type inSet C ::  :: x_in_C {{ com lookup type of $[[ ident ]]$ in context $[[ C ]]$ }}
+
+grammar
+
+  formula :: 'formula_' ::=
+    | judgement                                                             ::   :: judgement
+    | ty_extra                                                              ::   :: ty_extra
+    | opsem_extra                                                           ::   :: opsem_extra
+    | misc_extra                                                            ::   :: misc_extra
+    % both
+    | indexed </ formulai // i />                                           :: X :: indexed
+
+defns
+  ty_judge :: 'Ty_' ::=
+

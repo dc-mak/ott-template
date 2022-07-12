@@ -1,0 +1,9 @@
+grammar
+
+  opsem_extra :: 'opsem_extra_' ::= {{ com extra judgements for operational semantics }}
+    | forall i lt j . not ( pati = pval ~> subsi ) ::   :: forall_i_lt_j_not_decons {{ com all patterns prior to $[[j]]$ failed to match/deconstruct }}
+
+
+defns
+  opsem_judge :: 'OpSem_' ::=
+

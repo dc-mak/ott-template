@@ -1,0 +1,63 @@
+% vim: ft=tex
+\PassOptionsToPackage{dvipsnames,usenames}{color}
+\documentclass[11pt]{article}%
+
+\usepackage{hyperref}
+\usepackage{amsmath,amssymb}%
+% supertabular package required if using the default grammar tabular
+\usepackage{supertabular}
+\usepackage[margin=1in]{geometry}
+\geometry{landscape}
+\usepackage{ifthen}
+
+% the un-wrapped (-tex_wrap false) generated LaTeX file for CN
+\include{_gen/ott_included}
+% the package that allows customized layout described in this document
+\usepackage{ottlayout}
+% the automatically generated file (with our Makefile) to link the generated
+% LaTeX with the ottlayout package
+\include{_gen/ott_override}
+\include{_gen/ott_drulenames}
+\ottstyledefaults{numberpremises=yes,premisenamelayout=topright,rulelayout=nobreaks}
+
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
+
+\title{\vspace{-2cm}Ott Template}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle%
+
+\vspace{-2cm}
+\begin{abstract}
+Insert some abstract here.
+A proof of soundness is given in a separate document.
+\end{abstract}
+
+{\let\clearpage\relax \tableofcontents}
+
+\section{Commentary}
+\label{sec:commentary}
+
+In this document, base types are referred to as $[[ base_type ]]$.
+
+% This is important for LaTeX to not overflow rules off the page
+\raggedright%
+
+\section{Types and Patterns}
+\ottdefnstyXXjudge%
+
+\section{Operational Semantics}
+\ottdefnsopsemXXjudge%
+
+\section{Miscellaneous}
+\ottdefnsproofXXdefns%
+
+\section{Metvars and Grammar}
+\ottmetavars\\[\baselineskip]
+\ottgrammar%
+
+\end{document}
