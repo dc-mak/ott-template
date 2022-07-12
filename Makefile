@@ -60,7 +60,7 @@ append_rule_cases: $(GEN)/defns.drulenames | $(GEN)
 	@echo 'Appending \step{<0>$$RULE_NUM}{\case{$$RULE}{}}'
 	@awk '{ gsub(/[^a-zA-Z]/, ""); print "\\step{<0>" NR "}{\\case" "{\\" $$0 "}{}}"; }' $^ > $@
 	@sed '1,/^\end{document}$$/d' < soundness.tex > old_cases
-	@sed -i '/^\\end{document}$$/q' soundness.tex
+	@sed -i".tmp" '/^\\end{document}$$/q' soundness.tex
 	@cat $@ >> soundness.tex && rm $@
 
 # {\cndrulename{Subs\_Pat\_Value'\_Sym}}{} |-> Subs\_Pat\_Value'\_Sym
@@ -89,12 +89,12 @@ $(GEN)/defns.tex: defns.tex $(CACHE) | check_defns_diff $(GEN)
 check_defns_diff: $(GEN)/$(PREFIX)_included.tex
 	@echo "Checking for definitions differences"
 	@grep -o '^\\$(PREFIX)defns[a-zA-Z]\+' $^ | head -n-1 > $@
-	@grep -o '^\\$(PREFIX)defns[a-zA-Z]\+' defns.tex | diff -u --color - $@
+	@grep -o '^\\$(PREFIX)defns[a-zA-Z]\+' defns.tex | diff -u - $@
 	@rm $@
 
 .PHONY: out_hack
 out_hack: $(OTTS)
-	sed -i '/% OUT_HACK.*/{n;N;N;d;}' $(OTTS)
+	sed -i".tmp" '/% OUT_HACK.*/{n;N;N;d;}' $(OTTS)
 	for i in $(OTTS); do ./out_hack.awk -i inplace $$i; done
 
 $(GEN)/$(PREFIX)_included.tex: $(CACHE) | $(GEN)
